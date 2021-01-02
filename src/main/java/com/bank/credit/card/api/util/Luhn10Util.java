@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Luhn10Util {
 
-    private final static Logger LOG = LoggerFactory.getLogger(Luhn10Util.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Luhn10Util.class);
     private static final int DEC_RADIX = 10;
 
     public static int calculateLuhnMod10Check(final List<Integer> digits) {
@@ -32,7 +32,7 @@ public class Luhn10Util {
         return ( 10 - ( sum % 10 ) ) % 10;
     }
 
-    private static int extractDigit(char value) throws NumberFormatException {
+    public static int extractDigit(char value) throws NumberFormatException {
         if ( Character.isDigit( value ) ) {
             return Character.digit( value, DEC_RADIX );
         }
