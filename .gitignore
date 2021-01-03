@@ -32,3 +32,4 @@
 .sts4-cache
 
 target/
+/${sonar.jacoco.reportsPath}/

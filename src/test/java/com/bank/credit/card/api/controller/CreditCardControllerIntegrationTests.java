@@ -1,5 +1,6 @@
 package com.bank.credit.card.api.controller;
 
+import ch.qos.logback.core.Appender;
 import com.bank.credit.card.api.CreditCardProcessingApplication;
 import com.bank.credit.card.api.builder.CreditCardBuilder;
 import com.bank.credit.card.api.constraints.CardNumber;
@@ -8,20 +9,20 @@ import com.bank.credit.card.api.model.Brand;
 import com.bank.credit.card.api.model.Card;
 import com.bank.credit.card.api.service.CardService;
 import com.bank.credit.card.api.util.ResourcePaths;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.hibernate.validator.constraints.CreditCardNumber;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.LoggerFactory;
+import org.slf4j.event.Level;
+import org.slf4j.event.LoggingEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -35,31 +36,31 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import static com.bank.credit.card.api.util.Constants.PojoDescription.*;
 import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.restdocs.snippet.Attributes.key;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.slf4j.Logger;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CreditCardProcessingApplication.class)
 @WebAppConfiguration
 @AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 public class CreditCardControllerIntegrationTests {
+
 
     protected ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).configure(SerializationFeature.INDENT_OUTPUT, true);
 
@@ -118,7 +119,7 @@ public class CreditCardControllerIntegrationTests {
     }
 
     @Test
-    public void verifyIfCardWasCreated() throws JsonProcessingException, Exception {
+    public void verifyIfCardWasCreated() throws  Exception {
         Card card = CreditCardBuilder.builder().brand(Brand.VISA).balance(10.0).limit("1000").name("Rahul Kumar").number("4716651077977392").build().buildCard();
         card.setId("1234");
         assertNotNull("Card is null!", card);
@@ -128,17 +129,17 @@ public class CreditCardControllerIntegrationTests {
                 .andDo(document("." + ResourcePaths.Card.V1.ROOT + "/{method-name}",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
-                        requestFields(fieldWithPath("id").type(JsonFieldType.STRING).description("The Credit Card Transaction ID."),
-                                fieldWithPath("name").type(JsonFieldType.STRING).description("Credit Card Type").attributes(key("constraints").value(NotNull.class.getSimpleName())),
-                                fieldWithPath("number").type(JsonFieldType.STRING).description("Credit Card Number").attributes(key("constraints").value(CardNumber.class.getSimpleName())),
-                                fieldWithPath("limit").type(JsonFieldType.STRING).description("Credit Card Expiration Date").attributes(key("constraints").value(NotNull.class.getSimpleName())),
-                                fieldWithPath("brand").type(JsonFieldType.STRING).description("Store").type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())),
-                                fieldWithPath("balance").type(JsonFieldType.NUMBER).description("Products Array").type(JsonFieldType.NUMBER).attributes(key("constraints").value(NotNull.class.getSimpleName()))))).andReturn();
+                        requestFields(fieldWithPath("id").type(JsonFieldType.STRING).description(ID),
+                                fieldWithPath("name").type(JsonFieldType.STRING).description(NAME).attributes(key("constraints").value(NotNull.class.getSimpleName())),
+                                fieldWithPath("number").type(JsonFieldType.STRING).description(CARD_NUMBER).attributes(key("constraints").value(CardNumber.class.getSimpleName())),
+                                fieldWithPath("limit").type(JsonFieldType.STRING).description(LIMIT).attributes(key("constraints").value(NotNull.class.getSimpleName())),
+                                fieldWithPath("brand").type(JsonFieldType.STRING).description(BRAND).type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())),
+                                fieldWithPath("balance").type(JsonFieldType.NUMBER).optional().description(BALANCE).type(JsonFieldType.NUMBER).attributes(key("constraints").value(NotNull.class.getSimpleName()))))).andReturn();
 
     }
 
     @Test
-    public void verifyIfCardsCreatedExists() throws JsonProcessingException, Exception {
+    public void verifyIfCardsCreatedExists() throws Exception {
 
         Card card = CreditCardBuilder.builder().brand(Brand.VISA).balance(10.0).limit("1000").name("Rahul Kumar").number("4716651077977392").build().buildCard();
 
@@ -157,13 +158,16 @@ public class CreditCardControllerIntegrationTests {
                 .andDo(document("." + ResourcePaths.Card.V1.ROOT + "/{method-name}",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
-                        responseFields(fieldWithPath("[].id").type(JsonFieldType.STRING).description("The Credit Card Transaction ID."),
-                                subsectionWithPath("[].name").type(JsonFieldType.STRING).description("Credit Card Type").attributes(key("constraints").value(NotNull.class.getSimpleName())),
-                                subsectionWithPath("[].number").type(JsonFieldType.STRING).description("Credit Card Number").attributes(key("constraints").value(CardNumber.class.getSimpleName())),
-                                subsectionWithPath("[].balance").type(JsonFieldType.NUMBER).description("Credit Card Expiration Date").attributes(key("constraints").value(NotNull.class.getSimpleName())),
-                                subsectionWithPath("[].limit").type(JsonFieldType.STRING).description("limit").type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())),
-                                subsectionWithPath("[].brand").type(JsonFieldType.STRING).description("Products Array").type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())))))
+                        responseFields(fieldWithPath("[].id").type(JsonFieldType.STRING).description(ID),
+                                subsectionWithPath("[].name").type(JsonFieldType.STRING).description(NAME).attributes(key("constraints").value(NotNull.class.getSimpleName())),
+                                subsectionWithPath("[].number").type(JsonFieldType.STRING).description(CARD_NUMBER).attributes(key("constraints").value(CardNumber.class.getSimpleName())),
+                                subsectionWithPath("[].balance").type(JsonFieldType.NUMBER).optional().description(BALANCE).attributes(key("constraints").value(NotNull.class.getSimpleName())),
+                                subsectionWithPath("[].limit").type(JsonFieldType.STRING).description(LIMIT).type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())),
+                                subsectionWithPath("[].brand").type(JsonFieldType.STRING).description(BRAND).type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())))))
                 .andReturn();
     }
+
+
+
 
 }

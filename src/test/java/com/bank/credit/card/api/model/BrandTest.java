@@ -112,4 +112,6 @@ public class BrandTest {
                 constraintViolations.iterator().next().getMessage()
         );
     }
+
+
 }

@@ -67,7 +67,7 @@ public abstract class CardCheckBase {
             return false;
         }
 
-        return this.isCheckDigitValid(digits, checkDigit);
+            return this.isCheckDigitValid(digits, checkDigit);
     }
 
     /**
