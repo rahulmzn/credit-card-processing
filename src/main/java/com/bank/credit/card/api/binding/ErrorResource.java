@@ -1,13 +1,15 @@
-
 package com.bank.credit.card.api.binding;
-
-import java.io.Serializable;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 
+import java.io.Serializable;
+import java.util.List;
+
+/*
+ * ErrorResource is common error resource which will be used across for exception handling framework
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter

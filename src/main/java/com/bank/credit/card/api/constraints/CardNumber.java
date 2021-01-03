@@ -17,6 +17,13 @@ import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * This annotated has to represent a valid
+ * credit card number. This is the Luhn 10 implementation
+ * which aims to check for user mistake, not credit card validity!
+ * based on checksum and checksum digit
+ */
+
 @Documented
 @Constraint(validatedBy = {CardNumberValidator.class})
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
@@ -42,14 +49,12 @@ public @interface CardNumber {
 
     /**
      * @return The index of the check digit in the input. Per default it is assumed that the check digit is the last
-     * digit of the specified range. If set, the digit at the specified index is used. If set
-     * the following must hold true:
-     * {@code checkDigitIndex > 0 && (checkDigitIndex < startIndex || checkDigitIndex >= endIndex}.
+     * digit of the specified range.
      */
     int checkDigitIndex() default -1;
 
     /**
-     * Defines several {@code @CreditCardValidation} annotations on the same element.
+     * Defines several {@code @CardNumberValidation} annotations on the same element.
      */
     @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
     @Retention(RUNTIME)

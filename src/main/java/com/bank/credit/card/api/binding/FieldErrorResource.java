@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+/*
+ * FieldErrorResource is created to use for field validation as part of exception handling framework
+ */
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,6 +17,9 @@ import lombok.ToString;
 @Getter
 public class FieldErrorResource extends GlobalErrorResource {
 
+    /**
+     * @apiNote parameter will be used to define if invalid data passed for entity field
+     */
     private final String parameter;
 
     @Builder

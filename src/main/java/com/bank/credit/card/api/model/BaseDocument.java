@@ -7,6 +7,11 @@ import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 
+/**
+ * Mongo DB base object
+ * @param <T> : extended or implemented object.
+ */
+
 @Data
 public class BaseDocument<T extends Serializable> {
 

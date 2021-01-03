@@ -7,6 +7,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * Common entity object, can be use to store the cards information in database.
+ * The reason for giving name as card is to keep
+ * this property as generic and later it can be used for other type of  card for e.g. : VISA
+ */
+
 @Document(collection = "cards")
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor

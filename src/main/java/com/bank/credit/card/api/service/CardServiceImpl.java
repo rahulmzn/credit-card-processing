@@ -1,15 +1,16 @@
 package com.bank.credit.card.api.service;
 
-import javax.annotation.Resource;
-
 import com.bank.credit.card.api.model.Card;
 import com.bank.credit.card.api.repository.CreditCardRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+
+/**
+ * CardServiceImpl will be responsible to prepare data fetched from database or other backend system
+ */
 
 @Service
 public class CardServiceImpl implements CardService {

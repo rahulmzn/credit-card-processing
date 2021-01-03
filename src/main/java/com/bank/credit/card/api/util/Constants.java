@@ -3,6 +3,10 @@ package com.bank.credit.card.api.util;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+/**
+ * Common constants will hold POJO description.
+ */
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Constants {
 

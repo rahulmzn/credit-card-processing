@@ -2,6 +2,9 @@ package com.bank.credit.card.api.model;
 
 import java.util.regex.Pattern;
 
+  /**
+   * Card brand type object
+   */
 public enum Brand {
 
     UNKNOWN, VISA("^4[0-9]{12}(?:[0-9]{3})?$"), MASTERCARD("^5[1-5][0-9]{14}$"), AMERICAN_EXPRESS("^3[47][0-9]{13}$"), DINERS_CLUB("^3(?:0[0-5]|[68][0-9])[0-9]{11}$"), DISCOVER(

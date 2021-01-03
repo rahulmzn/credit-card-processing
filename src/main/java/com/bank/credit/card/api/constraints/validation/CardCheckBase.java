@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+/**
+ * CardCheckBase contains all shared methods and options used by Validators for luhn checksum calculation
+ */
 public abstract class CardCheckBase {
 
     private static final Logger LOG = getLogger(CardCheckBase.class);
@@ -72,7 +75,6 @@ public abstract class CardCheckBase {
 
     /**
      * Returns the numeric {@code int} value of a {@code char}
-     *
      * @param value the input {@code char} to be parsed
      * @return the numeric {@code int} value represented by the character.
      * @throws NumberFormatException in case character is not a digit
@@ -117,10 +119,6 @@ public abstract class CardCheckBase {
         if (this.checkDigitIndex > 0 && this.startIndex <= this.checkDigitIndex && this.endIndex > this.checkDigitIndex) {
             throw new IllegalArgumentException(String.format("Invalid Range: %1$d > %2$d.", this.startIndex, this.endIndex));
         }
-    }
-
-    private boolean validateInput(String value) {
-        return REGX_EXP.matcher(value).matches();
     }
 
     private String extractVerificationString(String value) throws IndexOutOfBoundsException {

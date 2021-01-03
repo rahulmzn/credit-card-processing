@@ -23,12 +23,20 @@ import java.util.List;
 @ExposesResourceFor(Card.class)
 @RequestMapping(value = ResourcePaths.Card.V1.ROOT)
 
-
+/*
+ * This controller will be responsible to handel Add new card and get existing cards request
+ */
 public class CreditCardController {
 
     @Resource
     CardService cardService;
 
+    /**
+     * addCard will be responsible to add new card into database after applying generic annotated validation
+     * @param card : card which needs to be add in database
+     * @param bindingResult : error responses after running validation on request body parameters
+     * @return
+     */
     @Operation(summary = "Add credit card", description = "Add new credit card", tags = {"Credit Cards"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The request completed successfully"),
@@ -47,6 +55,10 @@ public class CreditCardController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * query will be responsible to fetch all existing card from database and return as a list.
+     * @return List<Card>
+     */
     @Operation(summary = "Find existing credit cards", description = "Get list of all existing cards", tags = {"Credit Cards"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The request completed successfully"),
