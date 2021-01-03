@@ -90,7 +90,7 @@ from resource to resource.
 
 [[resources]]
 == Resources
-include::index-resource.adoc[]
-<<<
 include::card-resource.adoc[]
+<<<
+
 

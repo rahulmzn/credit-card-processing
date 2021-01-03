@@ -4,6 +4,7 @@ import com.bank.credit.card.api.builder.CreditCardBuilder;
 import com.bank.credit.card.api.model.Brand;
 import com.bank.credit.card.api.model.Card;
 import com.bank.credit.card.api.repository.CreditCardRepository;
+import org.assertj.core.util.Arrays;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -49,8 +51,8 @@ class CardServiceImplTest {
 
     @Test
     void findAll() {
-        when(creditCardRepository.findAll(any(Pageable.class))).thenReturn(Page.empty());
-        List<Card> cards = cardService.findAll(pageable);
+        when(creditCardRepository.findAll()).thenReturn(Collections.emptyList());
+        cardService.findAll();
         verify(creditCardRepository, times(1)).findAll(pageable);
     }
 }

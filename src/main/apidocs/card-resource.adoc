@@ -3,26 +3,11 @@
 
 NOTE: The cards resource provides the entry point to add new card and get existing cards.
 
-<<<
-[[resources-cards-post]]
-===== Validate and add credit card
-NOTE: When the request is completed successfully, the service return a 201 http status code, If given inputs are not valid then service will return 422 http status .
-
-====== Request Fields
-include::{snippets}/api/v1/cards/verify-if-card-was-created/request-fields.adoc[]
-
-====== Request
-include::{snippets}/api/v1/cards/verify-if-card-was-created/http-request.adoc[]
-
-====== Response
-include::{snippets}/api/v1/cards/verify-if-card-was-created/http-response.adoc[]
-
-
-[[resources-card-access]]
-=== Accessing the cards resource
+[[resources-cards-access]]
+=== Accessing the card resource
 
 ==== version 1 (v1)
-[[resources-card-get]]
+[[resources-cards-get]]
 ===== How to get existing cards
 
 ====== Request
@@ -34,6 +19,19 @@ include::{snippets}/api/v1/cards/verify-if-cards-created-exists/http-response.ad
 ====== Response Fields
 include::{snippets}/api/v1/cards/verify-if-cards-created-exists/response-fields.adoc[]
 
+<<<
+[[resources-cards-post]]
+===== Add credit card
+NOTE: When the request is completed successfully, the service return a 201 http status code, If given inputs are not valid then service will return 422 http status .
+
+====== Request Fields
+include::{snippets}/api/v1/cards/verify-if-card-was-created/request-fields.adoc[]
+
+====== Request
+include::{snippets}/api/v1/cards/verify-if-card-was-created/http-request.adoc[]
+
+====== Response
+include::{snippets}/api/v1/cards/verify-if-card-was-created/http-response.adoc[]
 
 <<<
 [[resources-cards-post-falided]]

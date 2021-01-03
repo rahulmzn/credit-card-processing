@@ -23,7 +23,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public List<Card> findAll(Pageable pageable) {
-        return creditCardRepository.findAll(pageable).getContent();
+    public List<Card> findAll() {
+        return creditCardRepository.findAll();
     }
 }

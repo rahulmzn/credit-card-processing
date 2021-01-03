@@ -121,7 +121,16 @@
 			<artifactId>json-path-assert</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<!-- End JSON -->
+
+		<!-- Start Swagger Docs-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+		<!-- End Swagger Docs -->
 	</dependencies>
 
 	<build>
