@@ -1,0 +1,44 @@
+[[resources-card]]
+== Card
+
+NOTE: The card resource provides the entry point to add new card and get existing cards.
+
+[[resources-card-access]]
+=== Accessing the card resource
+
+==== version 1 (v1)
+[[resources-card-get]]
+===== How get existing cards
+
+====== Request
+include::{snippets}/api/v1/cards/verify-if-cards-created-exists/http-request.adoc[]
+
+====== Response
+include::{snippets}/api/v1/cards/verify-if-cards-created-exists/http-response.adoc[]
+
+====== Response Fields
+include::{snippets}/api/v1/cards/verify-if-cards-created-exists/response-fields.adoc[]
+
+<<<
+[[resources-cards-post]]
+===== How to validate and add a credit card
+NOTE: When the request is completed the service return a 201 status code
+
+====== Request Fields
+include::{snippets}/api/v1/cards/verify-if-card-was-created/request-fields.adoc[]
+
+====== Request
+include::{snippets}/api/v1/cards/verify-if-card-was-created/http-request.adoc[]
+
+====== Response
+include::{snippets}/api/v1/cards/verify-if-card-was-created/http-response.adoc[]
+
+<<<
+[[resources-cards-post-falided]]
+===== Card data validation exception. This occurs with invalid card parameters
+
+====== Request
+include::{snippets}/api/v1/cards/should-verify-if-card-has-no-data/http-request.adoc[]
+
+====== Response
+include::{snippets}/api/v1/cards/should-verify-if-card-has-no-data/http-response.adoc[]

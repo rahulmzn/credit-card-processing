@@ -1,0 +1,14 @@
+[[resources-index]]
+== Index
+
+NOTE: The index provides the entry point into the service.
+
+
+[[resources-index-access]]
+=== Accessing the index
+
+A `GET` request is used to access the index
+
+==== Example response
+
+include::{snippets}/api/v1/cards/verify-if-card-was-created/http-response.adoc[]
