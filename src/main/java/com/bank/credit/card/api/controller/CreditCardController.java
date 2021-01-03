@@ -4,7 +4,6 @@ import com.bank.credit.card.api.exceptions.InvalidRequestException;
 import com.bank.credit.card.api.model.Card;
 import com.bank.credit.card.api.service.CardService;
 import com.bank.credit.card.api.util.ResourcePaths;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.http.HttpStatus;
@@ -39,7 +38,7 @@ public class CreditCardController {
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Card>> query(Pageable pageable) {
-        Page<Card> cards = cardService.findAll(pageable);
-        return ResponseEntity.ok(cards.getContent());
+        List<Card> cards = cardService.findAll(pageable);
+        return ResponseEntity.ok(cards);
     }
 }
