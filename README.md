@@ -24,7 +24,7 @@ Here we have used both type of validation
 
 ### API Documents
 Credit card processing application provides below types of documentation 	
-* Automatically generated API documentation 
+* Automatically generated API documentation (To see follow credit-card-processing/target/generated-docs directory)
 * Swagger Open API specification
 
 **For more details refer how to test section below**
@@ -55,8 +55,9 @@ class diagrams can be accessed from class-diagram folder [here](https://github.c
 See [application.properties](https://github.com/rahulmzn/credit-card-processing/blob/master/src/main/resources/application.properties) 
 
 
-### Prerequisites?
+### Prerequisites
 This application can be test based on availability of below tools on system.	 
+
 #### Essential
     Java version 8 or later
     Maven version 3 or later 
@@ -65,20 +66,23 @@ This application can be test based on availability of below tools on system.
     Development IDE
     REST API Testing Tools (like postman)
 
-### How Build?
+### How to Build?
+
+>_NOTE_: To run below commands make maven must be pre configure on system and 
 
 Credit card system use maven build system to compile code 
 also maven is used for running all unit-test and integration test to validate application.
 	
 
-#### Build and Package documentation
-	Run mvn clean install 
+#### Build and generate API documentation
+	mvn clean install 
 
 #### Build Package
 	mvn package
 
 ### How to Test?
 Application can we tested after running above build step.
+
 #### Run application as Standalone Restful API
     mvn package
     mvn spring-boot:run
@@ -93,3 +97,6 @@ Application will be by default published on port 8080 at localhost, This also ca
 [Test Restful API](http://localhost:8080/swagger-ui-custom.html)
 
 >_NOTE:_ Published by default on environment: http://localhost:8080/
+
+### Test Reports
+All the reports will be generated under `credit-card-processing/target` after running maven scripts as given above
