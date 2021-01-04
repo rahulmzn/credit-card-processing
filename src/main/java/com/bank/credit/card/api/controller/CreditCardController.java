@@ -2,7 +2,7 @@ package com.bank.credit.card.api.controller;
 import com.bank.credit.card.api.binding.ErrorResource;
 import com.bank.credit.card.api.exceptions.InvalidRequestException;
 import com.bank.credit.card.api.model.Card;
-import com.bank.credit.card.api.service.CardService;
+import com.bank.credit.card.api.service.CreditCardService;
 import com.bank.credit.card.api.util.ResourcePaths;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -29,7 +29,7 @@ import java.util.List;
 public class CreditCardController {
 
     @Resource
-    CardService cardService;
+    CreditCardService creditCardService;
 
     /**
      * Add Card will be responsible to add new card into database after applying generic annotated validation
@@ -51,7 +51,7 @@ public class CreditCardController {
             throw new InvalidRequestException("Invalid " + card.getClass().getSimpleName(), bindingResult);
         }
         // Process storing credit card information in data base
-        cardService.addCard(card);
+        creditCardService.addCard(card);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -64,8 +64,8 @@ public class CreditCardController {
             @ApiResponse(responseCode = "200", description = "The request completed successfully"),
             @ApiResponse(responseCode = "404", description = "The request was malformed. The response body will include an error providing further information", content = @Content)})
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<Card>> query() {
-        List<Card> cards = cardService.findAll();
+    public ResponseEntity<List<Card>> getAllCards() {
+        List<Card> cards = creditCardService.findAll();
         return ResponseEntity.ok(cards);
     }
 }

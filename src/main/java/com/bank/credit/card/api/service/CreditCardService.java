@@ -8,7 +8,7 @@ import java.util.List;
  * CardService will be responsible to define  information access functions.
  */
 
-public interface CardService {
+public interface CreditCardService {
 
     Card addCard(Card card);
 

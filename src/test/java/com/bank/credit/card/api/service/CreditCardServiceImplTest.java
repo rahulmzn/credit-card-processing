@@ -20,7 +20,7 @@ import java.util.Collections;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class CardServiceImplTest {
+class CreditCardServiceImplTest {
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
@@ -32,7 +32,7 @@ class CardServiceImplTest {
     Pageable pageable;
 
     @InjectMocks
-    CardServiceImpl cardService;
+    CreditCardServiceImpl cardService;
 
     @Before
     public void init() {

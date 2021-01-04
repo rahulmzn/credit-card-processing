@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Service
-public class CardServiceImpl implements CardService {
+public class CreditCardServiceImpl implements CreditCardService {
 
     @Resource
     CreditCardRepository creditCardRepository;
