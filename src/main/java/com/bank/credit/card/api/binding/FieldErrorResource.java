@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-/*
+/**
  * FieldErrorResource is created to use for field validation as part of exception handling framework
  */
 @EqualsAndHashCode(callSuper = true)

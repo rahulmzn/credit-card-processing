@@ -15,10 +15,19 @@ import java.io.Serializable;
 @Data
 public class BaseDocument<T extends Serializable> {
 
+    /**
+     * Generated id for document
+     */
     @Id
     @Generated
     T id;
 
+
+    /**
+     * Here we have implemented hash code manually
+     *
+     * @return @code{hash code value}
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -27,6 +36,12 @@ public class BaseDocument<T extends Serializable> {
         return result;
     }
 
+    /**
+     * Here we have implemented equals manually
+     *
+     * @param obj to compare
+     * @return {@code true} if objects match {@code false} both are not matched
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -42,6 +57,10 @@ public class BaseDocument<T extends Serializable> {
         } else return id.equals(other.id);
     }
 
+    /**
+     * Manually generated to string method
+     * @return string of object parameters
+     */
     @Override
     public String toString() {
         return "BaseDocument [id=" + id + "]";

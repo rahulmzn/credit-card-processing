@@ -1,6 +1,5 @@
 package com.bank.credit.card.api.controller;
 
-import ch.qos.logback.core.Appender;
 import com.bank.credit.card.api.CreditCardProcessingApplication;
 import com.bank.credit.card.api.builder.CreditCardBuilder;
 import com.bank.credit.card.api.constraints.CardNumber;
@@ -16,11 +15,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.MockitoAnnotations;
-import org.slf4j.LoggerFactory;
-import org.slf4j.event.Level;
-import org.slf4j.event.LoggingEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,9 +35,6 @@ import javax.validation.constraints.NotNull;
 import static com.bank.credit.card.api.util.Constants.PojoDescription.*;
 import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -53,7 +45,6 @@ import static org.springframework.restdocs.snippet.Attributes.key;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import org.slf4j.Logger;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CreditCardProcessingApplication.class)

@@ -26,7 +26,7 @@ public class CardNumberValidator extends CardCheckBase implements ConstraintVali
      * @param digits The digits over which to calculate the checksum
      * @param checkDigit the check digit
      *
-     * @return {@code true} if the luhn check result matches the check digit, {@code false} otherwise
+     * @return {@code true} if the luhn 10 check result matches the check digit, {@code false} otherwise
      */
     @Override
     public boolean isCheckDigitValid(List<Integer> digits, char checkDigit) {

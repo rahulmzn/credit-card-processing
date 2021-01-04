@@ -8,6 +8,11 @@ import lombok.With;
 
 import java.util.Objects;
 
+
+/**
+ * CreditCardBuilder is utility class for providing new card Object for given details
+ */
+
 @Builder
 @With
 public class CreditCardBuilder {
@@ -22,6 +27,10 @@ public class CreditCardBuilder {
 
     private final Brand brand;
 
+    /**
+     * Generate new card for given details
+     * @return new card object
+     */
     public Card buildCard() {
         if(Objects.nonNull(name) && Objects.nonNull(number) && Objects.nonNull(limit)&& Objects.nonNull(balance)&& Objects.nonNull(brand))
             return new Card(name, number, limit, balance, brand);

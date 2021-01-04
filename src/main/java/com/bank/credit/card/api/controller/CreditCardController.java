@@ -32,10 +32,10 @@ public class CreditCardController {
     CardService cardService;
 
     /**
-     * addCard will be responsible to add new card into database after applying generic annotated validation
+     * Add Card will be responsible to add new card into database after applying generic annotated validation
      * @param card : card which needs to be add in database
      * @param bindingResult : error responses after running validation on request body parameters
-     * @return
+     * @return {@code @ResponseEntity<Void>}
      */
     @Operation(summary = "Add credit card", description = "Add new credit card", tags = {"Credit Cards"})
     @ApiResponses(value = {
@@ -56,7 +56,7 @@ public class CreditCardController {
     }
 
     /**
-     * query will be responsible to fetch all existing card from database and return as a list.
+     * Query will be responsible to fetch all existing card from database and return as a list.
      * @return List<Card>
      */
     @Operation(summary = "Find existing credit cards", description = "Get list of all existing cards", tags = {"Credit Cards"})

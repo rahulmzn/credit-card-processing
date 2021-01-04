@@ -19,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * This annotated has to represent a valid
- * credit card number. This is the Luhn 10 implementation
+ * credit card number. This is the Luhn10 implementation
  * which aims to check for user mistake, not credit card validity!
  * based on checksum and checksum digit
  */

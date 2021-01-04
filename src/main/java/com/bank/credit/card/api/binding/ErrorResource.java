@@ -7,8 +7,12 @@ import lombok.Getter;
 import java.io.Serializable;
 import java.util.List;
 
-/*
+/**
  * ErrorResource is common error resource which will be used across for exception handling framework
+ * @author : Rahul Kumar
+ *
+ * Please see the {@link com.bank.credit.card.api.model.Card} class for ref.
+ *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -17,11 +21,25 @@ import java.util.List;
 public class ErrorResource implements Serializable {
 
     private static final long serialVersionUID = -2415907856747146978L;
-
+    /**
+     * Unique code which can be used for tracking or tracing errors.
+     */
     private final String code;
+    /**
+     * Details about exception
+     */
     private String exception;
+    /**
+     * Error level message
+     */
     private String message;
+    /**
+     * List of captured errors
+     */
     private transient List<FieldErrorResource> errors;
+    /**
+     * List of captured global errors
+     */
     private transient List<GlobalErrorResource> globalErrors;
 
     private String getErrorNumber() {

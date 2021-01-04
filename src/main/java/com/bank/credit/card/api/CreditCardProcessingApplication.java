@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Spring Boot application, which consume in built tomcat server to run.
+ */
 @SpringBootApplication
 public class CreditCardProcessingApplication {
 	public static final Logger LOGGER = LoggerFactory.getLogger(CreditCardProcessingApplication.class);

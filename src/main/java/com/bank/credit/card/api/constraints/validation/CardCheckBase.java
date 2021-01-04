@@ -7,7 +7,6 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -17,8 +16,6 @@ import static org.slf4j.LoggerFactory.getLogger;
 public abstract class CardCheckBase {
 
     private static final Logger LOG = getLogger(CardCheckBase.class);
-
-    private static final Pattern REGX_EXP = Pattern.compile("[^0-9]");
 
     private static final int DEC_RADIX = 10;
 
@@ -46,6 +43,16 @@ public abstract class CardCheckBase {
         this.validateOptions();
     }
 
+    /**
+     * <p>
+     *     isValid will be performing check on given number to
+     *     find check digit, to perform Luhn 10 algorithm
+     *     validation given details are number.
+     * </p>
+     * @param value : series of numbers
+     * @param context : constraints context
+     * @return : {@code true} if the luhn 10 check result matches the check digit, {@code false} otherwise
+     */
     public boolean isValid(final CharSequence value, final ConstraintValidatorContext context) {
         LOG.debug("Class {} isValid called", CardCheckBase.class.getSimpleName());
 

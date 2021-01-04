@@ -14,6 +14,12 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class GlobalErrorResource {
+    /**
+     * Error unique transaction code
+     */
     private String code;
+    /**
+     * Detailed message about exception
+     */
     private String message;
 }

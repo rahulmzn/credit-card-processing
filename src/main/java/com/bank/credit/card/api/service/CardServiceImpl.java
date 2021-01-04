@@ -9,7 +9,7 @@ import java.util.List;
 
 
 /**
- * CardServiceImpl will be responsible to prepare data fetched from database or other backend system
+ * CardServiceImpl will be responsible to prepare data fetched from database or other backend system.
  */
 
 @Service

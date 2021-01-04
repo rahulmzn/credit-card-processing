@@ -1,7 +1,7 @@
 package com.bank.credit.card.api.exceptions;
 
 /**
- * EntityNotFoundException can be used when we have entity level errors.
+ * EntityNotFoundException will be used when we have entity level errors.
  */
 
 public class EntityNotFoundException extends RuntimeException {

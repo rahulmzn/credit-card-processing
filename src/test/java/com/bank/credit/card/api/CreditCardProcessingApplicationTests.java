@@ -8,6 +8,9 @@ class CreditCardProcessingApplicationTests {
 
 	@Test
 	void contextLoads() {
+		/**
+		 * empty test
+		 */
 	}
 
 }
