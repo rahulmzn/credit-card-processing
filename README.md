@@ -87,7 +87,7 @@ Find generated application packaged jar file inside credit-card-processing/targe
     java -jar credit-card-processing-0.0.1-SNAPSHOT.jar
 
 ### How access?	
-Application will be by default published on port 8080 at localhost, This also can be customised by changing port details [application.properties](https://github.com/rahulmzn/credit-card-processing/blob/master/src/main/resources/application.properties)
+Application will be by default published on port 8080 at localhost, This also can be customised by changing port value for server.port property [application.properties](https://github.com/rahulmzn/credit-card-processing/blob/master/src/main/resources/application.properties)
 
 #### Test Restful API via swagger 
 [Test Restful API](http://localhost:8080/swagger-ui-custom.html)
