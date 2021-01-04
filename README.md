@@ -88,13 +88,16 @@ Application can we tested after running above build step.
     mvn spring-boot:run
 #### Run application as full-stack package
 Find generated application packaged jar file inside credit-card-processing/target/credit-card-processing-0.0.1-SNAPSHOT.jar	
+   
     java -jar credit-card-processing-0.0.1-SNAPSHOT.jar
 
 ### How access?	
 Application will be by default published on port 8080 at localhost, This also can be customised by changing port value for server.port property [application.properties](https://github.com/rahulmzn/credit-card-processing/blob/master/src/main/resources/application.properties)
 
-#### Test Restful API via swagger 
-[Test Restful API](http://localhost:8080/swagger-ui-custom.html)
+#### Test Restful API via swagger
+After deployment of application [Test Restful API](http://localhost:8080/swagger-ui-custom.html) link can be followed to test API's. 
+
+    Access Test API : http://localhost:8080/swagger-ui-custom.html
 
 >_NOTE:_ Published by default on environment: http://localhost:8080/
 
