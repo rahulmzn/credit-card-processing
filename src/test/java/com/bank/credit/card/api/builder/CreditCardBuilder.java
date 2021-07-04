@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.With;
 
+import java.util.Currency;
 import java.util.Objects;
 
 
@@ -27,13 +28,15 @@ public class CreditCardBuilder {
 
     private final Brand brand;
 
+    private final String currency;
+
     /**
      * Generate new card for given details
      * @return new card object
      */
     public Card buildCard() {
         if(Objects.nonNull(name) && Objects.nonNull(number) && Objects.nonNull(limit)&& Objects.nonNull(balance)&& Objects.nonNull(brand))
-            return new Card(name, number, limit, balance, brand);
+            return new Card(name, number, limit, balance, brand,currency);
         else
             return new Card();
     }

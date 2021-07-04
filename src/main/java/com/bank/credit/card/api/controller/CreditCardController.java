@@ -52,7 +52,6 @@ public class CreditCardController {
 
     // Possible response from API
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "The request completed successfully"),
             @ApiResponse(responseCode = "201", description = "A new resource has been created successfully"),
             @ApiResponse(responseCode = "204", description = "An update to an existing resource has been applied successfully"),
             @ApiResponse(responseCode = "422", description = "The request was well-formed but was unable to be followed due to semantic errors.", content = @Content(schema = @Schema(implementation = ErrorResource.class)))})

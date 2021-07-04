@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import java.util.Currency;
 
 
 /**
@@ -62,4 +63,6 @@ public class Card extends BaseDocument<String> {
     @NotNull
     private Brand brand;
 
+    @JsonProperty("currency")
+    private String currency;
 }

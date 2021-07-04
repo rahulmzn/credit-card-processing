@@ -34,9 +34,6 @@ class CreditCardServiceImplTest {
     @InjectMocks
     CreditCardServiceImpl cardService;
 
-    @Before
-    public void init() {
-    }
 
     @Test
     void addCard() {

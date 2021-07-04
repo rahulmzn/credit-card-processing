@@ -1,4 +1,4 @@
-package com.bank.credit.card.api.controller;
+package com.bank.credit.card.api;
 
 import com.bank.credit.card.api.CreditCardProcessingApplication;
 import com.bank.credit.card.api.builder.CreditCardBuilder;
@@ -50,7 +50,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CreditCardProcessingApplication.class)
 @WebAppConfiguration
 @AutoConfigureRestDocs(outputDir = "target/generated-snippets")
-public class CreditCardControllerIntegrationTests {
+public class CreditCardIntegrationTests {
 
 
     protected ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -111,7 +111,7 @@ public class CreditCardControllerIntegrationTests {
 
     @Test
     public void verifyIfCardWasCreated() throws  Exception {
-        Card card = CreditCardBuilder.builder().brand(Brand.VISA).balance(10.0).limit("1000").name("Rahul Kumar").number("4716651077977392").build().buildCard();
+        Card card = CreditCardBuilder.builder().brand(Brand.VISA).balance(10.0).limit("1000").name("Rahul Kumar").number("4716651077977392").currency("£").build().buildCard();
         card.setId("1234");
         assertNotNull("Card is null!", card);
         mockMvc.perform(post(ResourcePaths.Card.V1.ROOT).contentType(MediaType.APPLICATION_JSON).headers(getRequestHeaders()).content(mapper.writeValueAsString(card)))
@@ -124,6 +124,7 @@ public class CreditCardControllerIntegrationTests {
                                 fieldWithPath("name").type(JsonFieldType.STRING).description(NAME).attributes(key("constraints").value(NotNull.class.getSimpleName())),
                                 fieldWithPath("number").type(JsonFieldType.STRING).description(CARD_NUMBER).attributes(key("constraints").value(CardNumber.class.getSimpleName())),
                                 fieldWithPath("limit").type(JsonFieldType.STRING).description(LIMIT).attributes(key("constraints").value(NotNull.class.getSimpleName())),
+                                fieldWithPath("currency").type(JsonFieldType.STRING).description(CURRENCY).attributes(key("constraints").value(NotNull.class.getSimpleName())),
                                 fieldWithPath("brand").type(JsonFieldType.STRING).description(BRAND).type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())),
                                 fieldWithPath("balance").type(JsonFieldType.NUMBER).optional().description(BALANCE).type(JsonFieldType.NUMBER).attributes(key("constraints").value(NotNull.class.getSimpleName()))))).andReturn();
 
@@ -132,7 +133,7 @@ public class CreditCardControllerIntegrationTests {
     @Test
     public void verifyIfCardsCreatedExists() throws Exception {
 
-        Card card = CreditCardBuilder.builder().brand(Brand.VISA).balance(10.0).limit("1000").name("Rahul Kumar").number("4716651077977392").build().buildCard();
+        Card card = CreditCardBuilder.builder().brand(Brand.VISA).balance(10.0).limit("1000").name("Rahul Kumar").number("4716651077977392").currency("£").build().buildCard();
 
         card = cardService.addCard(card);
         assertNotNull("Cars  is null!", card);
@@ -145,6 +146,7 @@ public class CreditCardControllerIntegrationTests {
                 .andExpect((jsonPath("$.[0].number", notNullValue())))
                 .andExpect((jsonPath("$.[0].balance", notNullValue())))
                 .andExpect((jsonPath("$.[0].limit", notNullValue())))
+                .andExpect(jsonPath("$.[0].currency", notNullValue()))
                 .andExpect(jsonPath("$.[0].brand", notNullValue()))
                 .andDo(document("." + ResourcePaths.Card.V1.ROOT + "/{method-name}",
                         preprocessRequest(prettyPrint()),
@@ -154,6 +156,7 @@ public class CreditCardControllerIntegrationTests {
                                 subsectionWithPath("[].number").type(JsonFieldType.STRING).description(CARD_NUMBER).attributes(key("constraints").value(CardNumber.class.getSimpleName())),
                                 subsectionWithPath("[].balance").type(JsonFieldType.NUMBER).optional().description(BALANCE).attributes(key("constraints").value(NotNull.class.getSimpleName())),
                                 subsectionWithPath("[].limit").type(JsonFieldType.STRING).description(LIMIT).type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())),
+                                subsectionWithPath("[].currency").type(JsonFieldType.STRING).description(CURRENCY).type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())),
                                 subsectionWithPath("[].brand").type(JsonFieldType.STRING).description(BRAND).type(JsonFieldType.STRING).attributes(key("constraints").value(NotNull.class.getSimpleName())))))
                 .andReturn();
     }

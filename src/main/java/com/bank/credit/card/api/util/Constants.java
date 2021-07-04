@@ -21,6 +21,7 @@ public class Constants {
         public static final String LIMIT = "Total limit of credit card";
         public static final String CARD_NUMBER = "Credit card Number";
         public static final String BRAND = "Brand of credit card ex. VISA";
+        public static final String CURRENCY = "Currency of card";
     }
 
 }
