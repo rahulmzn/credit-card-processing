@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Common entity object, can be use to store the cards information in database.
  * The reason for giving name as card is to keep
- * this property as generic and later it can be used for other type of  card for e.g. : VISA
+ * this property as generic and later it can be used for other type of  card for e.g. : Debit etc.
  * Data collection will be created in mongo database with below given name
  */
 

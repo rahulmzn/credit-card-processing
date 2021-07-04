@@ -7,7 +7,8 @@ import javax.validation.ConstraintValidator;
 import java.util.List;
 
 /**
- * Luhn algorithm checksum validator
+ * Validate given card number against LUHN Algorithm
+ * See for ref {@link Luhn10Util#calculateLuhnMod10Check(List) LUHN Algorithm custom implementation }
  */
 public class CardNumberValidator extends CardCheckBase implements ConstraintValidator<CardNumber, CharSequence> {
 
@@ -21,9 +22,9 @@ public class CardNumberValidator extends CardCheckBase implements ConstraintVali
     }
 
     /**
-     * Validate check digit using Luhn 10 algorithm
+     * This function should be used for checking if all given digits are valid
      *
-     * @param digits The digits over which to calculate the checksum
+     * @param digits: Digits which needs to get validated
      * @param checkDigit the check digit
      *
      * @return {@code true} if the luhn 10 check result matches the check digit, {@code false} otherwise

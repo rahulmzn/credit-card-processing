@@ -4,12 +4,15 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 /**
- * Common constants will hold POJO description.
+ * Common constants.
  */
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Constants {
 
+    /**
+     * Constants to define Card POJO properties
+     */
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class PojoDescription{
         public static final String ID = "Credit card unique ID.";

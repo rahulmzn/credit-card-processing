@@ -1,4 +1,4 @@
-package com.bank.credit.card.api.binding;
+package com.bank.credit.card.api.data.binding;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,14 +10,14 @@ import java.util.List;
 /**
  * ErrorResource is common error resource which will be used across for exception handling framework
  * @author : Rahul Kumar
- *
+ * @version 1.0
  * Please see the {@link com.bank.credit.card.api.model.Card} class for ref.
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
-// NOSONAR
+// NO SONAR
 public class ErrorResource implements Serializable {
 
     private static final long serialVersionUID = -2415907856747146978L;
@@ -30,7 +30,7 @@ public class ErrorResource implements Serializable {
      */
     private String exception;
     /**
-     * Error level message
+     * Describe error message in detail
      */
     private String message;
     /**

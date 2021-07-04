@@ -1,7 +1,7 @@
 [[resources-card]]
 == Card
 
-NOTE: The cards resource provides the entry point to add new card and get existing cards.
+NOTE: The card's resource provides the access to entry point for add a new card and get all existing cards.
 
 [[resources-cards-access]]
 === Accessing the card resource
@@ -22,7 +22,7 @@ include::{snippets}/api/v1/cards/verify-if-cards-created-exists/response-fields.
 <<<
 [[resources-cards-post]]
 ===== Add credit card
-NOTE: When the request is completed successfully, the service return a 201 http status code, If given inputs are not valid then service will return 422 http status .
+NOTE: When request is completed successfully, the service return a 201 http status code, If given inputs are not valid then service will return 422 http status .
 
 ====== Request Fields
 include::{snippets}/api/v1/cards/verify-if-card-was-created/request-fields.adoc[]
@@ -35,7 +35,7 @@ include::{snippets}/api/v1/cards/verify-if-card-was-created/http-response.adoc[]
 
 <<<
 [[resources-cards-post-falided]]
-===== Card data validation exception. This occurs with invalid card parameters
+===== Card data validation exception. This occurs with invalid card parameters.
 
 ====== Request
 include::{snippets}/api/v1/cards/should-verify-if-card-has-no-data/http-request.adoc[]

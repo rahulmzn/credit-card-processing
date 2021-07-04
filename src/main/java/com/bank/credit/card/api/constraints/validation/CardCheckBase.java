@@ -11,7 +11,7 @@ import java.util.Objects;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
- * CardCheckBase contains all shared methods and options used by Validators for luhn checksum calculation
+ * This should be used to check on card details, this provides different type of function to validate cards
  */
 public abstract class CardCheckBase {
 

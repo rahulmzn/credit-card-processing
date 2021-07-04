@@ -6,7 +6,7 @@ import com.bank.credit.card.api.constraints.CardNumber;
 import com.bank.credit.card.api.exceptions.InvalidRequestException;
 import com.bank.credit.card.api.model.Brand;
 import com.bank.credit.card.api.model.Card;
-import com.bank.credit.card.api.service.CreditCardService;
+import com.bank.credit.card.api.service.CardService;
 import com.bank.credit.card.api.util.ResourcePaths;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -64,7 +64,7 @@ public class CreditCardControllerIntegrationTests {
     private WebApplicationContext wac;
 
     @Resource
-    CreditCardService creditCardService;
+    CardService cardService;
 
     @Before
     public void setUp() throws Exception {
@@ -134,7 +134,7 @@ public class CreditCardControllerIntegrationTests {
 
         Card card = CreditCardBuilder.builder().brand(Brand.VISA).balance(10.0).limit("1000").name("Rahul Kumar").number("4716651077977392").build().buildCard();
 
-        card = creditCardService.addCard(card);
+        card = cardService.addCard(card);
         assertNotNull("Cars  is null!", card);
 
         mockMvc.perform(get(ResourcePaths.Card.V1.ROOT, card.getId()).contentType(MediaType.APPLICATION_JSON).headers(getRequestHeaders()))
