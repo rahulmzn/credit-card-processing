@@ -29,9 +29,10 @@ Credit card processing application provides below types of documentation
 
 **For more details refer how to test section below**
     
-### API Document Sample	
+### API docs PDF Samples	
 See [credit-card-processing.pdf](https://github.com/rahulmzn/credit-card-processing/blob/master/docs/credit-card-processing.pdf) 
 
+See [credit-card-processing-swagger-doc.pdf](https://github.com/rahulmzn/credit-card-processing/blob/master/src/main/apidocs/CreditCardApplicationSwagger.pdf)
 ### API Class Diagram
 class diagrams can be accessed from class-diagram folder [here](https://github.com/rahulmzn/credit-card-processing/tree/master/class-diagram) 
 
@@ -98,7 +99,7 @@ To run credit card application execute below steps
 ##### On Windows Systems
     ./mvnw.cmd spring-boot:run
  
-### How Access & Test Credit Card API's?	
+### How to Access & Test Credit Card API's?	
 Application will be by default published on port 8080 at localhost, 
 >_NOTE:_ This also can be customised by changing port value for server.port property [application.properties](https://github.com/rahulmzn/credit-card-processing/blob/master/src/main/resources/application.properties).
 >Once port has been changed, do update below endpoint on newly configured port
