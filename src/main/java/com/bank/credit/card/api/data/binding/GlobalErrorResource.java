@@ -1,4 +1,4 @@
-package com.bank.credit.card.api.binding;
+package com.bank.credit.card.api.data.binding;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

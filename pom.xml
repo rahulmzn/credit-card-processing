@@ -2,18 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.bank</groupId>
+	<artifactId>credit-card-processing</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>credit-card-processing</name>
+	<description>Credit Card Processing Application</description>
+	<packaging>jar</packaging>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.1</version>
 		<relativePath/>
 	</parent>
-	<groupId>com.bank</groupId>
-	<artifactId>credit-card-processing</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>credit-card-processing</name>
-	<description>Credit Card Processing  Application</description>
-	<packaging>jar</packaging>
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
@@ -28,13 +30,14 @@
 		<timestamp>${maven.build.timestamp}</timestamp>
 	</properties>
 
-	<!-- Source Code Management -->
+	<!-- Source Code Management Start-->
 	<scm>
 		<connection>scm:git@github.com:rahulmzn/credit-card-processing.git</connection>
 		<url>scm:git@github.com:rahulmzn/credit-card-processing.git</url>
 		<developerConnection>scm:git@github.com:rahulmzn/credit-card-processing.git</developerConnection>
 	</scm>
-	<!-- Source Code Management -->
+	<!-- Source Code Management End -->
+
 	<dependencies>
 		<!-- Start Spring Boot -->
 		<dependency>
@@ -55,14 +58,16 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- End Spring Boot -->
-		<!-- start constraints -->
+
+		<!-- Start constraints -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
 		</dependency>
-		<!-- end constraints -->
-		<!-- start in-memory database-->
+		<!-- End constraints -->
+
+		<!-- Start in-memory database-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
@@ -76,14 +81,8 @@
 			<artifactId>embedmongo-spring</artifactId>
 			<version>1.3.1</version>
 		</dependency>
-		<!-- end in-memory database -->
-		<!-- Start Junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- End Junit -->
+		<!-- End in-memory database -->
+
 		<!-- Start Rest API documentation -->
 		<dependency>
 			<groupId>org.springframework.restdocs</groupId>
@@ -96,13 +95,7 @@
 			<version>1.7</version>
 		</dependency>
 		<!-- End Rest API documentation -->
-		<!-- Start  JSON -->
-		<dependency>
-			<groupId>com.jayway.jsonpath</groupId>
-			<artifactId>json-path-assert</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- End JSON -->
+
 		<!-- Start Swagger Docs-->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -117,18 +110,30 @@
 			<optional>true</optional>
 		</dependency>
 		<!-- End Supporting lib-->
+
+		<!-- Start Junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path-assert</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- End Junit -->
 	</dependencies>
 
 	<build>
-		<!-- Start Source -->
+		<!-- Start of Source code config -->
 		<resources>
 			<resource>
 				<directory>${project.basedir}/src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-		<!-- End of Source -->
-
+		<!-- End of Source code config -->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -142,6 +147,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
 			<!-- Start Run Test -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -177,8 +183,7 @@
 							<goal>test</goal>
 						</goals>
 						<configuration>
-							<!-- Sets the VM argument line used when unit tests are run. -->
-							<argLine>${surefireArgLineut}</argLine>
+
 							<!-- Never skip running the tests when the test phase is invoked -->
 							<skip>false</skip>
 							<includes>
@@ -197,10 +202,7 @@
 							<goal>test</goal>
 						</goals>
 						<configuration>
-							<!-- Sets the VM argument line used when unit tests are run. -->
-							<argLine>${surefireArgLineit}</argLine>
-							<!-- Never skip running the tests when the integration-test phase
-								is invoked -->
+							<!-- Never skip running the tests when the integration-test phase is invoked -->
 							<skip>false</skip>
 							<includes>
 								<!-- Include integration tests within integration-test phase. -->
@@ -292,7 +294,6 @@
 				</executions>
 			</plugin>
 			<!-- End Reporting -->
-
 
 			<!-- Start Rest API document generation -->
 			<plugin>

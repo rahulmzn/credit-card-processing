@@ -3,7 +3,7 @@ package com.bank.credit.card.api.service;
 import com.bank.credit.card.api.builder.CreditCardBuilder;
 import com.bank.credit.card.api.model.Brand;
 import com.bank.credit.card.api.model.Card;
-import com.bank.credit.card.api.repository.CreditCardRepository;
+import com.bank.credit.card.api.repository.CardRepository;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ class CreditCardServiceImplTest {
     public MockitoRule rule = MockitoJUnit.rule();
 
     @Mock
-    private CreditCardRepository creditCardRepository;
+    private CardRepository cardRepository;
 
     @Mock
     Pageable pageable;
@@ -34,22 +34,19 @@ class CreditCardServiceImplTest {
     @InjectMocks
     CreditCardServiceImpl cardService;
 
-    @Before
-    public void init() {
-    }
 
     @Test
     void addCard() {
         Card card = CreditCardBuilder.builder().name("Unit Test").number("4386280033772018").balance(10.0).limit("1000").brand(Brand.VISA).build().buildCard();
-        when(creditCardRepository.save(any())).thenReturn(card);
+        when(cardRepository.save(any())).thenReturn(card);
         cardService.addCard(card);
-        verify(creditCardRepository, times(1)).save(card);
+        verify(cardRepository, times(1)).save(card);
     }
 
     @Test
     void findAll() {
-        when(creditCardRepository.findAll()).thenReturn(Collections.emptyList());
+        when(cardRepository.findAll()).thenReturn(Collections.emptyList());
         cardService.findAll();
-        verify(creditCardRepository, times(1)).findAll(pageable);
+        verify(cardRepository, times(1)).findAll(pageable);
     }
 }

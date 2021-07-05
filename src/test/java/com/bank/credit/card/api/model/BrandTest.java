@@ -1,5 +1,8 @@
 package com.bank.credit.card.api.model;
 
+import com.bank.credit.card.api.constants.Constants;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -8,6 +11,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -48,7 +52,7 @@ public class BrandTest {
 
     @Test
     public void checkNoErrorWhenValidCardNumber() {
-        Card car = new Card("Rahul Kumar","4748460033772018","1000",0.0,Brand.VISA);
+        Card car = new Card(Constants.NAME,"4748460033772018","1000",0.0,Brand.VISA,Constants.CURRENCY);
 
         Set<ConstraintViolation<Card>> constraintViolations =
                 validator.validate( car );
@@ -59,59 +63,60 @@ public class BrandTest {
 
     @Test
     public void checkErrorWhenInvalidCardNumber() {
-        Card car = new Card("Rahul Kumar","4386280033772018","1000",0.0,Brand.VISA);
+        Card car = new Card(Constants.NAME,"4386280033772018","1000",0.0,Brand.VISA,Constants.CURRENCY);
 
         Set<ConstraintViolation<Card>> constraintViolations =
                 validator.validate( car );
 
         assertEquals( 1, constraintViolations.size() );
         assertEquals(
-                "invalid credit card number",
+                Constants.EXCEPTION_MSG,
                 constraintViolations.iterator().next().getMessage()
         );
     }
 
     @Test
     public void checkErrorWhenCardNumberIsMoreThan19Char() {
-        Card car = new Card("Rahul Kumar","43862800111111133772018","1000",0.0,Brand.VISA);
+        Card car = new Card(Constants.NAME,"43862800111111133772018","1000",0.0,Brand.VISA,Constants.CURRENCY);
 
         Set<ConstraintViolation<Card>> constraintViolations =
                 validator.validate( car );
 
         assertEquals( 1, constraintViolations.size() );
         assertEquals(
-                "invalid credit card number",
+                Constants.EXCEPTION_MSG,
                 constraintViolations.iterator().next().getMessage()
         );
     }
 
     @Test
     public void checkErrorWhenCardNumberIsLessThan13Char() {
-        Card car = new Card("Rahul Kumar","43862813772018","1000",0.0,Brand.VISA);
+        Card car = new Card(Constants.NAME,"43862813772018","1000",0.0,Brand.VISA,Constants.CURRENCY);
 
         Set<ConstraintViolation<Card>> constraintViolations =
                 validator.validate( car );
 
         assertEquals( 1, constraintViolations.size() );
         assertEquals(
-                "invalid credit card number",
+                Constants.EXCEPTION_MSG,
                 constraintViolations.iterator().next().getMessage()
         );
     }
 
     @Test
     public void checkErrorWhenCardNumberContainsAlphabets() {
-        Card car = new Card("Rahul Kumar","43862811rr133772018","1000",0.0,Brand.VISA);
+        Card car = new Card(Constants.NAME,"43862811rr133772018","1000",0.0,Brand.VISA,Constants.CURRENCY);
 
         Set<ConstraintViolation<Card>> constraintViolations =
                 validator.validate( car );
 
         assertEquals( 1, constraintViolations.size() );
         assertEquals(
-                "invalid credit card number",
+                Constants.EXCEPTION_MSG,
                 constraintViolations.iterator().next().getMessage()
         );
     }
+
 
 
 }

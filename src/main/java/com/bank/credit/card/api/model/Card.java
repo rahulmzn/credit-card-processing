@@ -7,12 +7,13 @@ import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import java.util.Currency;
 
 
 /**
  * Common entity object, can be use to store the cards information in database.
  * The reason for giving name as card is to keep
- * this property as generic and later it can be used for other type of  card for e.g. : VISA
+ * this property as generic and later it can be used for other type of  card for e.g. : Debit etc.
  * Data collection will be created in mongo database with below given name
  */
 
@@ -62,4 +63,6 @@ public class Card extends BaseDocument<String> {
     @NotNull
     private Brand brand;
 
+    @JsonProperty("currency")
+    private String currency;
 }
