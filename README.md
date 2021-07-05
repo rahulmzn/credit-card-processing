@@ -12,28 +12,21 @@ Credit card application allows adding new credit card and fetch existing credit 
       <li>
          <a href="#technology-stack-&-other-open---source-libraries">Technology stack &amp; other Open-source libraries</a>
          <ul>
-            <li><a href="#data">Data</a></li>
+            <li><a href="#data">Database</a></li>
             <li><a href="#server---backend">Server - Backend</a></li>
             <li><a href="#libraries-and-plugins">Libraries and Plugins</a></li>
             <li><a href="#others">Others</a></li>
          </ul>
       </li>
       <li>
-         <a href="#installing">Application Installation</a>
+         <a href="#getting-started">Getting Started</a>
          <ul>
-            <li><a href="#running-the-application-with-maven">Running Credit Card App Without Maven</a>
+            <li><a href="#running-credit-card-app-with-maven">Running Credit Card App with Maven</a>
                 <ul>
-                <li><a href="#h2-console">On Mac OS</a></li>
-                <li><a href="#h2-console">On Windows OS</a></li>
+                <li><a href="#on-mac-os">Run on Mac OS</a></li>
+                <li><a href="#on-windows-os">Run on Windows OS</a></li>
                 </ul>
             </li>
-            <li><a href="#running-the-application-with-maven">Running Credit Card App With Maven</a>
-                <ul>
-                    <li><a href="#h2-console">On Mac OS</a></li>
-                    <li><a href="#h2-console">On Windows OS</a></li>
-                </ul>
-            </li>
-            <li><a href="#running-the-application-with-ide">Running the application with IDE</a></li>
             <li><a href="#creating-executable-jar-and-then-running-the-application">Creating executable JAR and then running the application</a></li>
             <li><a href="#accessing-data-in-h2-database">Accessing Data in H2 Database</a>
                  <ul><li><a href="#h2-console">H2 Console</a></li></ul>
@@ -69,7 +62,7 @@ System should allow adding new credit card and fetching all existing cards from 
 
 ### Technology stack & other Open-source libraries
 
-### Data
+### Database
 * [H2 Database Engine](https://www.h2database.com/html/main.html) Java SQL database. Embedded and server modes; in-memory databases
       
 ### Server - Backend
@@ -94,7 +87,7 @@ System should allow adding new credit card and fetching all existing cards from 
 
 <details open="open">
    <ul>
-      <li><a href="https://git-scm.com/">git</a> - Free and Open-Source distributed version control system</li>
+      <li><a href="https://git-scm.com/">Git</a> - Free and Open-Source distributed version control system</li>
    </ul>
 </details>
 
@@ -103,32 +96,25 @@ System should allow adding new credit card and fetching all existing cards from 
 These instructions will get you a copy of the project up and running on your local machine for development and testing
 purposes.
 
-## Installing
+## Installing App
 
-#### Running the application with IDE
-
-There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method
-in the `com.uk.org.ps.publicissapienttask.PublicisSapientTaskApplication` class from your IDE.
-
-* Download the zip or clone the Git repository.
-* Unzip the zip file (if you downloaded one)
-* Open Command Prompt and Change directory (cd) to folder containing pom.xml
-* Open Intellij
-    * File -> Open -> Navigate to the folder where you unzipped the zip
-    * Select the project
-* Choose the Spring Boot Application file (search for @SpringBootApplication)
-* Right Click on the file and Run as Java Application
-
-#### Running the application with Maven
+#### Running credit card app with maven
 
 Alternatively you can use
 the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html)
 like so (Maven should be installed in the system and mvn command is accessible):
 
+##### On mac os
 ```shell
-$ git clone https://github.com/ppagote/publicis-sapient-task.git
-$ cd publicis-sapient-task
-$ mvn spring-boot:run
+$ git clone https://github.com/rahulmzn/credit-card-app.git
+$ cd credit-card-app
+$ ./mvnw spring-boot:run
+```
+##### On windows os
+```shell
+$ git clone https://github.com/rahulmzn/credit-card-app.git
+$ cd credit-card-app
+$ ./mvnw.bat spring-boot:run
 ```
 
 #### Creating executable JAR and then running the application
@@ -137,11 +123,19 @@ The code can also be built into a jar and then executed/run. Once the jar is bui
 or by using the command
 
 ```shell
-$ git clone https://github.com/ppagote/publicis-sapient-task.git
-$ cd publicis-sapient-task
+$ git clone https://github.com/rahulmzn/credit-card-app.git
+$ cd credit-card-app
 $ mvn package -DskipTests
-$ java -jar target/publicis-sapient-task-0.0.1-SNAPSHOT.jar
+$ java -jar target/credit-card-app-0.0.1-SNAPSHOT.jar.jar
 ```
+
+To shut down the jar, follow the below mentioned steps on a Mac os machine.
+
+* In command prompt execute the **lsof -i tcp:8085** command to print a list of all running Java processes
+* **kill -9 /PID PROCESS_ID_OF_RUNNING_APP /F** execute this command by replacing the **PROCESS_ID_OF_RUNNING_APP**
+  with the actual process id of the running jar found out from executing the previous command
+* Press enter
+
 
 To shut down the jar, follow the below mentioned steps on a Windows machine.
 
@@ -153,15 +147,15 @@ To shut down the jar, follow the below mentioned steps on a Windows machine.
 
 ###### H2 Console
 
-URL to access H2 console: **http://localhost:8080/h2-console/login.jsp**
-or **https://192.168.99.102:8080/h2-console/login.jsp** if **SSL** is enabled.
+URL to access H2 console: **http://localhost:8085/h2-console/login.jsp**
+or **https://192.168.99.102:8085/h2-console/login.jsp** if **SSL** is enabled.
 
 Fill the login form as follows and click on Connect:
 
 * Saved Settings: **Generic H2 (Embedded)**
 * Setting Name: **Generic H2 (Embedded)**
 * Driver class: **org.h2.Driver**
-* JDBC URL: **jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE**
+* JDBC URL: **jdbc:h2:mem:bank;DB_CLOSE_ON_EXIT=FALSE**
 * User Name: **sa**
 * Password:
 
@@ -171,54 +165,43 @@ Fill the login form as follows and click on Connect:
 
 Generating code coverage reports
 
+##### On mac os
 ```shell
-$ mvn test
+$ git clone https://github.com/rahulmzn/credit-card-app.git
+$ cd credit-card-app
+$ ./mvnw clean test jacoco:report
+
+```
+##### On windows os
+```shell
+$ git clone https://github.com/rahulmzn/credit-card-app.git
+$ cd credit-card-app
+$ ./mvnw.bat clean test jacoco:report
+
 ```
 
 This will create a detailed HTML style report showing code coverage statistics gathered via code instrumentation.
 
-**publicis-sapient-task\target\site\jacoco\index.html**
+**credit-card-app\target\site\jacoco\index.html**
 
 ## Testing API
 
 ### Testing with Postman Runner
 
-Import the `\artifacts\PublicisSapientTask.postman_collection.json` file into postman and run the API tests (Spring Boot service should be running).
+Import the `\docs\CreditCardApp.postman_collection.json` file into postman and run the API tests (Spring Boot service should be running).
 
 ### Testing with Maven
-
 * Run only unit tests:
 
 ```shell
-$ mvn clean test
+$ ./mvn clean test
 ```
-### Using Application
 
-Following below steps user can use the credit card application:
-* User needs to register themselves by passing the details as seen in Swagger documentation
-</br>  
-<img src="artifacts/registerUser.PNG" alt="register" />
-  </br>
-* After successful user registration, use the credentials to login
-  </br>  
-  <img src="artifacts/loginUser.PNG" alt="login" />
-  </br>
-  * After successful login, JWT token will be received which needs to be passed to every request in credit card application.
- </br>  
-    <img src="artifacts/authDetails.PNG" alt="auth" />
-    </br>
 ## Documentation
 
-* [Swagger](http://localhost:8080/swagger-ui/) - `http://localhost:8080/swagger-ui/`- Documentation & Testing
+* [Swagger](http://localhost:8085/swagger-ui/) - http://localhost:8085/swagger-ui- Documentation & Testing
 </br>  
-NOTE:: Spring security provides "/login" method which accepts username & password in the body, so "/login" details are not available in Swagger.
-
-* [Swagger](http://localhost:8080/v2/api-docs)
-    - `http://localhost:8080/v2/api-docs`- Documentation & Testing
-<!-- CONTACT -->
+* [Swagger](http://localhost:8085/v2/api-docs) - http://localhost:8085/v2/api-docs- Documentation as JSON
 
 ## Contact
-
-Pranav Pagote - pranav1990.pagote@gmail.com
-
-Project Link: [https://github.com/ppagote/publicis-sapient-task](https://github.com/ppagote/publicis-sapient-task)
+Project Link: [CreditCardApp](https://github.com/rahulmzn/credit-card-app)
