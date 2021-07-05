@@ -12,7 +12,7 @@ Credit card application allows adding new credit card and fetch existing credit 
       <li>
          <a href="#technology-stack-&-other-open---source-libraries">Technology stack &amp; other Open-source libraries</a>
          <ul>
-            <li><a href="#data">Database</a></li>
+            <li><a href="#database">Database</a></li>
             <li><a href="#server---backend">Server - Backend</a></li>
             <li><a href="#libraries-and-plugins">Libraries and Plugins</a></li>
             <li><a href="#others">Others</a></li>
@@ -60,7 +60,7 @@ System should allow adding new credit card and fetching all existing cards from 
 * New credit card start with £0
 * For cards not compatible with Luhn 10, return an error
 
-### Technology stack & other Open-source libraries
+### Technology stack & other Open - source libraries 
 
 ### Database
 * [H2 Database Engine](https://www.h2database.com/html/main.html) Java SQL database. Embedded and server modes; in-memory databases
@@ -143,9 +143,9 @@ To shut down the jar, follow the below mentioned steps on a Windows machine.
 * **Taskkill /PID PROCESS_ID_OF_RUNNING_APP /F** execute this command by replacing the **PROCESS_ID_OF_RUNNING_APP**
   with the actual process id of the running jar found out from executing the previous command
 * Press Ctrl+C
-##### Accessing Data in H2 Database
+### Accessing Data in H2 Database
 
-###### H2 Console
+##### H2 Console
 
 URL to access H2 console: **http://localhost:8085/h2-console/login.jsp**
 or **https://192.168.99.102:8085/h2-console/login.jsp** if **SSL** is enabled.
@@ -197,10 +197,11 @@ Import the `\docs\CreditCardApp.postman_collection.json` file into postman and r
 $ ./mvn clean test
 ```
 
-## Documentation
+### Testing with Swagger
 
 * [Swagger](http://localhost:8085/swagger-ui/) - http://localhost:8085/swagger-ui- Documentation & Testing
-</br>  
+
+### Documentation 
 * [Swagger](http://localhost:8085/v2/api-docs) - http://localhost:8085/v2/api-docs- Documentation as JSON
 
 ## Contact
