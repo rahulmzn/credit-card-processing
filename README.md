@@ -1,142 +1,224 @@
-# Credit Card Processing API
-Credit card processing system allows adding new credit card to account and fetch existing credit cards by accessing Restful API's.
+# Credit Card Application
+Credit card application allows adding new credit card and fetch existing credit cards from system over Restful API.
 
-The credit card processing system has been built upon Spring Boot with support of Embedded MongoDB, 
-Spring REST Docs and AsciiDoctor to provide quick access on resources.
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-This application provides below endpoints
-```    
-[POST] /api/v1/cards   : Add new credit card
-[GET] /api/v1/cards    : Fetch existing cards
+<details open="open">
+   <ul>
+      <li>
+          <a href="#requirement">Requirement</a>
+      </li>
+      <li>
+         <a href="#technology-stack-&-other-open---source-libraries">Technology stack &amp; other Open-source libraries</a>
+         <ul>
+            <li><a href="#data">Data</a></li>
+            <li><a href="#server---backend">Server - Backend</a></li>
+            <li><a href="#libraries-and-plugins">Libraries and Plugins</a></li>
+            <li><a href="#others">Others</a></li>
+         </ul>
+      </li>
+      <li>
+         <a href="#installing">Application Installation</a>
+         <ul>
+            <li><a href="#running-the-application-with-maven">Running Credit Card App Without Maven</a>
+                <ul>
+                <li><a href="#h2-console">On Mac OS</a></li>
+                <li><a href="#h2-console">On Windows OS</a></li>
+                </ul>
+            </li>
+            <li><a href="#running-the-application-with-maven">Running Credit Card App With Maven</a>
+                <ul>
+                    <li><a href="#h2-console">On Mac OS</a></li>
+                    <li><a href="#h2-console">On Windows OS</a></li>
+                </ul>
+            </li>
+            <li><a href="#running-the-application-with-ide">Running the application with IDE</a></li>
+            <li><a href="#creating-executable-jar-and-then-running-the-application">Creating executable JAR and then running the application</a></li>
+            <li><a href="#accessing-data-in-h2-database">Accessing Data in H2 Database</a>
+                 <ul><li><a href="#h2-console">H2 Console</a></li></ul>
+            </li>
+         </ul>
+      </li>
+      <li>
+         <a href="#code-coverage">Test Report</a>
+         <ul>
+            <li><a href="#jacoco">Jacoco</a></li>
+         </ul>
+      </li>
+      <li>
+         <a href="#testing-api">Testing API</a>
+         <ul>
+            <li><a href="#testing-with-postman-runner">Testing with Postman Runner</a></li>
+            <li><a href="#testing-with-maven">Testing with Maven</a></li>
+         </ul>
+      </li>
+      <li>
+          <a href="#using-application">Using Application</a>
+      </li>
+      <li><a href="#documentation">Documentation</a></li>
+      <li><a href="#contact">Contact</a></li>
+   </ul>
+</details>
+
+### Requirement
+System should allow adding new credit card and fetching all existing cards from database over Restful API.
+* Validate credit card number using Luhn10
+* New credit card start with £0
+* For cards not compatible with Luhn 10, return an error
+
+### Technology stack & other Open-source libraries
+
+### Data
+* [H2 Database Engine](https://www.h2database.com/html/main.html) Java SQL database. Embedded and server modes; in-memory databases
+      
+### Server - Backend
+
+<details open="open">
+   <ul>
+      <li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">JDK</a> - Java™ Platform, Standard Edition Development Kit</li>
+      <li><a href="https://spring.io/projects/spring-boot">Spring Boot</a> - Framework to ease the bootstrapping and development of new Spring Applications</li>
+      <li><a href="https://maven.apache.org/">Maven</a> - Dependency Management</li>
+   </ul>
+</details>
+
+### Libraries and Plugins
+
+<details open="open">
+   <ul>
+      <li><a href="https://swagger.io/">Swagger</a> - Open-Source software framework backed by a large ecosystem of tools that helps developers design, build, document, and consume RESTful Web services.</li>
+   </ul>
+</details>
+
+### Others
+
+<details open="open">
+   <ul>
+      <li><a href="https://git-scm.com/">git</a> - Free and Open-Source distributed version control system</li>
+   </ul>
+</details>
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing
+purposes.
+
+## Installing
+
+#### Running the application with IDE
+
+There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method
+in the `com.uk.org.ps.publicissapienttask.PublicisSapientTaskApplication` class from your IDE.
+
+* Download the zip or clone the Git repository.
+* Unzip the zip file (if you downloaded one)
+* Open Command Prompt and Change directory (cd) to folder containing pom.xml
+* Open Intellij
+    * File -> Open -> Navigate to the folder where you unzipped the zip
+    * Select the project
+* Choose the Spring Boot Application file (search for @SpringBootApplication)
+* Right Click on the file and Run as Java Application
+
+#### Running the application with Maven
+
+Alternatively you can use
+the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html)
+like so (Maven should be installed in the system and mvn command is accessible):
+
+```shell
+$ git clone https://github.com/ppagote/publicis-sapient-task.git
+$ cd publicis-sapient-task
+$ mvn spring-boot:run
 ```
-Full details for above endpoints are documented [here](https://github.com/rahulmzn/credit-card-processing/tree/master/docs)
 
-### API Validation
-* API will except JSON formatted request only.
-* Credit card number will be checked based on Luhn10 algorithm
-* Card number will be validated for number
+#### Creating executable JAR and then running the application
 
-Here we have used both type of validation (Custom and From Lib) 
-* Basic validation provided by libraries like NotNull etc. ( To prove less code & more config)
-* Custom Implementation for card validation (As asked in Assignment, Using Luh10 Algorithm, Implementation of Luhn10 can be found [here](https://github.com/rahulmzn/credit-card-processing/tree/master/src/main/java/com/bank/credit/card/api/constraints))
+The code can also be built into a jar and then executed/run. Once the jar is built, run the jar by double-clicking on it
+or by using the command
 
- > **_NOTE:_** Credit card number will be validated by our Luhn10 implementation which will be handle by our own created custom validation annotation applied on card->number field .
-
-### API Documents
-Credit card processing application provides below types of documentation 	
-* Automatically generated API documentation (To see follow credit-card-processing/target/generated-docs directory)
-* Swagger Open API specification
-
-**For more details refer how to test section below**
-    
-### API docs PDF Samples	
-See [credit-card-processing.pdf](https://github.com/rahulmzn/credit-card-processing/blob/master/docs/credit-card-processing.pdf) 
-
-See [credit-card-processing-swagger-doc.pdf](https://github.com/rahulmzn/credit-card-processing/blob/master/src/main/apidocs/CreditCardApplicationSwagger.pdf)
-### API Class Diagram
-class diagrams can be accessed from class-diagram folder [here](https://github.com/rahulmzn/credit-card-processing/tree/master/class-diagram) 
-
-### Embedded Mongo DB Config
+```shell
+$ git clone https://github.com/ppagote/publicis-sapient-task.git
+$ cd publicis-sapient-task
+$ mvn package -DskipTests
+$ java -jar target/publicis-sapient-task-0.0.1-SNAPSHOT.jar
 ```
-* Database: cards
-* Collection Name: cards
-* url: localhost
-* port: 27057
+
+To shut down the jar, follow the below mentioned steps on a Windows machine.
+
+* In command prompt execute the **jcmd** command to print a list of all running Java processes
+* **Taskkill /PID PROCESS_ID_OF_RUNNING_APP /F** execute this command by replacing the **PROCESS_ID_OF_RUNNING_APP**
+  with the actual process id of the running jar found out from executing the previous command
+* Press Ctrl+C
+##### Accessing Data in H2 Database
+
+###### H2 Console
+
+URL to access H2 console: **http://localhost:8080/h2-console/login.jsp**
+or **https://192.168.99.102:8080/h2-console/login.jsp** if **SSL** is enabled.
+
+Fill the login form as follows and click on Connect:
+
+* Saved Settings: **Generic H2 (Embedded)**
+* Setting Name: **Generic H2 (Embedded)**
+* Driver class: **org.h2.Driver**
+* JDBC URL: **jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE**
+* User Name: **sa**
+* Password:
+
+## Code Coverage
+
+### Jacoco
+
+Generating code coverage reports
+
+```shell
+$ mvn test
 ```
-### Application properties Config
-See [application.properties](https://github.com/rahulmzn/credit-card-processing/blob/master/src/main/resources/application.properties) 
 
+This will create a detailed HTML style report showing code coverage statistics gathered via code instrumentation.
 
-## Prerequisites to Build & Run Credit Card Application
-This application can be test based on availability of below tools & software.	 
+**publicis-sapient-task\target\site\jacoco\index.html**
 
-#### Essential
-    Java version 8
-    
-#### Optional
-    Development IDE
-    REST API Testing Tools (like postman)
-    Maven version 3 or later (Good to have)
+## Testing API
 
-### Download source code from GitHub
+### Testing with Postman Runner
 
- Source code of credit card application can be download [from here](https://github.com/rahulmzn/credit-card-processing/)
+Import the `\artifacts\PublicisSapientTask.postman_collection.json` file into postman and run the API tests (Spring Boot service should be running).
 
-#### Download as Zip 
+### Testing with Maven
 
-Zip file of full source code can be downloaded [from here](https://github.com/rahulmzn/credit-card-processing/archive/refs/heads/master.zip)
+* Run only unit tests:
 
-#### Download as source repository 
-    
-    git clone https://github.com/rahulmzn/credit-card-processing.git
-  
-## How to Build Application without Maven? 
->_NOTE_: If Maven software not installed (or configured) on system
+```shell
+$ mvn clean test
+```
+### Using Application
 
->_NOTE_: To run any of below commands system command prompt should point inside downloaded application folder
+Following below steps user can use the credit card application:
+* User needs to register themselves by passing the details as seen in Swagger documentation
+</br>  
+<img src="artifacts/registerUser.PNG" alt="register" />
+  </br>
+* After successful user registration, use the credentials to login
+  </br>  
+  <img src="artifacts/loginUser.PNG" alt="login" />
+  </br>
+  * After successful login, JWT token will be received which needs to be passed to every request in credit card application.
+ </br>  
+    <img src="artifacts/authDetails.PNG" alt="auth" />
+    </br>
+## Documentation
 
-        e.g cd credit-card-processing
+* [Swagger](http://localhost:8080/swagger-ui/) - `http://localhost:8080/swagger-ui/`- Documentation & Testing
+</br>  
+NOTE:: Spring security provides "/login" method which accepts username & password in the body, so "/login" details are not available in Swagger.
 
-#### Build and Generate auto documentation for API
-#####  On Mac OS or Unix Systems
-	./mvnw clean install 
-##### On Windows Systems
-	./mvnw.cmd clean install 
+* [Swagger](http://localhost:8080/v2/api-docs)
+    - `http://localhost:8080/v2/api-docs`- Documentation & Testing
+<!-- CONTACT -->
 
-#### Build as Package	
-##### On Mac OS or Unix Systems
-    ./mvnw package
-##### On Windows Systems
-    ./mvnw.cmd package
+## Contact
 
+Pranav Pagote - pranav1990.pagote@gmail.com
 
-# How to Run Credit Card Application ?
-To run credit card application execute below steps
-
-#### Run application as Standalone Restful API
-##### On Mac OS or Unix Systems
-    ./mvnw spring-boot:run
-##### On Windows Systems
-    ./mvnw.cmd spring-boot:run
- 
-### How to Access & Test Credit Card API's?	
-Application will be by default published on port 8080 at localhost, 
->_NOTE:_ This also can be customised by changing port value for server.port property [application.properties](https://github.com/rahulmzn/credit-card-processing/blob/master/src/main/resources/application.properties).
->Once port has been changed, do update below endpoint on newly configured port
-
-#### Test Credit Card API via swagger
-After deployment of application [Test Restful API](http://localhost:8080/swagger-ui-custom.html) link can be followed to test API's. 
-
-    Access Test API : http://localhost:8080/swagger-ui-custom.html
-
->_NOTE:_ Published by default on environment: http://localhost:8080/
-
-#### Test Credit Card API from command prompt (terminal) using CURL commands
-After deployment of application [Test Restful API](http://localhost:8080/swagger-ui-custom.html) link can be followed to test API's. 
-#### Add new card
-     : curl --location --request POST 'http://localhost:8080/api/v1/cards' --header 'Content-Type: application/json' --data-raw '{ "brand": "VISA", "type": "testing type", "currency": "GBP", "limit": "1000", "funding": "", "number": "4012888888881881", "country": "GB", "name": "Rahul Kumr" }'
-#### Fetch All cards
-     : curl --header 'Content-Type: application/json' 'http://localhost:8080/api/v1/cards'
-
-### Executed Test Reports
-All the reports will be generated under `credit-card-processing/target` after running maven scripts as given above
-
-
-### Additional Information about application   
-
-#### How to Build Application with Maven? (Optional)  
->_NOTE_: If Maven software pre-installed on system.
-
-##### Build and generate API documentation
-	mvn clean install 
-
-##### Build as Package
-	mvn package
-
-
-#### Run application from java
-Find generated application packaged jar file inside credit-card-processing/target/credit-card-processing-0.0.1-SNAPSHOT.jar	
->_NOTE:_  Move terminal to target folder path using cd commend if mvn install command has been executed.
-    
-    java -jar credit-card-processing-0.0.1-SNAPSHOT.jar
-
+Project Link: [https://github.com/ppagote/publicis-sapient-task](https://github.com/ppagote/publicis-sapient-task)
