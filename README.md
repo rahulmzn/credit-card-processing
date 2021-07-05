@@ -60,12 +60,12 @@ System should allow adding new credit card and fetching all existing cards from 
 * New credit card start with £0
 * For cards not compatible with Luhn 10, return an error
 
-### Technology stack & other Open - source libraries 
+### Technology stack & other Open-source libraries 
 
 ### Database
 * [H2 Database Engine](https://www.h2database.com/html/main.html) Java SQL database. Embedded and server modes; in-memory databases
       
-### Server - Backend
+### Server-Backend
 
 <details open="open">
    <ul>
